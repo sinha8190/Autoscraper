@@ -1,0 +1,37 @@
+{
+  "manifest_version": 2,
+
+  "name": "webScraper",
+  "description": "webScraper for testing",
+  "version": "1.0",
+  
+  "background": {
+    "persistent": false,
+    "page": "background.html"
+  },
+  
+  "browser_action": {
+    "default_icon": "img/scraper.jpg",
+	"default_title": "webScraper"
+  },
+  "permissions": [
+	"tabs",
+	"http://*/*", "https://*/*", "https://docs.google.com/*", "https://script.google.com/*/*",
+	"alarms"
+  ],
+  "web_accessible_resources": [ "https://script.google.com/*/*" ],
+  
+  "content_scripts" : [
+  {
+    "matches" : ["http://*/*","https://*/*"],
+    "js" : ["js/content1.js", "js/content2.js" ],
+	"run_at": "document_start",
+    "all_frames" : true
+   },
+ {  "matches" : ["http://*/*","https://*/*"],
+    "js" : [ "js/content3.js" ],
+	"run_at": "document_idle",
+    "all_frames" : true
+ }
+]
+}
